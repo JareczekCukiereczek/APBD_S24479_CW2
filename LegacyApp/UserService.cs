@@ -54,12 +54,12 @@ namespace LegacyApp
             return true;
         }
 
-        private bool IsValidEmail(string email)
+        public bool IsValidEmail(string email)
         {
             return email.Contains("@") && email.Contains(".");
         }
 
-        private bool IsOver21YearsOld(DateTime dateOfBirth)
+        public bool IsOver21YearsOld(DateTime dateOfBirth)
         {
             var now = DateTime.Now;
             int age = now.Year - dateOfBirth.Year;
