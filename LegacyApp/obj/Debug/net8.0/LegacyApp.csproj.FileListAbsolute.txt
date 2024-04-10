@@ -21,3 +21,4 @@
 /Users/kuba/Documents/apbd/zadanie/LegacyApp/obj/Debug/net8.0/refint/LegacyApp.dll
 /Users/kuba/Documents/apbd/zadanie/LegacyApp/obj/Debug/net8.0/LegacyApp.pdb
 /Users/kuba/Documents/apbd/zadanie/LegacyApp/obj/Debug/net8.0/ref/LegacyApp.dll
+/Users/kuba/Documents/apbd/zadanie/LegacyApp/obj/Debug/net8.0/LegacyApp.sourcelink.json
