@@ -14,10 +14,10 @@ public class UserServiceTest
         int clientId = 1;
         string email= "doe";
         var service = new UserService();
-        //act
+       
         bool result = service.AddUser(firstName, lastName, email, birthName, clientId);
         
-        //asssert
+        
         Assert.Equal(false,result);
     }
     [Fact]
@@ -29,23 +29,21 @@ public class UserServiceTest
         int clientId = 2;
         string email= "nowak@gmail.com";
         var service = new UserService();
-        //act
+        
         bool result = service.AddUser(firstName, lastName, email, birthName, clientId);
         
-        //asssert
+       
         Assert.Equal(true,result);
     }
     //testowanie email 
     [Fact]
     public void IsValidEmail_WithValidEmail_ReturnsTrue()
     {
-        // Arrange
+        
         var userService = new UserService();
 
-        // Act
         var result = userService.IsValidEmail("johndoe@gmail,com");
 
-        // Assert
         Assert.False(result);
     }
     [Fact]
@@ -53,9 +51,9 @@ public class UserServiceTest
     {
         var userService = new UserService();
 
-        // Act
+       
         var result = userService.IsValidEmail("johndoe!gmail,com");
-        //assert
+        
         Assert.False(result);
     }
     
@@ -63,7 +61,7 @@ public class UserServiceTest
     [Fact]
     public void IsOver21YearsOld_ReturnsTrue()
     {
-        // Arrange
+        
         var userService = new UserService();
 
         
@@ -78,17 +76,17 @@ public class UserServiceTest
     [Fact]
     public void IsOver21YearsOld_ReturnsFalse()
     {
-        // Arrange
+        
         var userService = new UserService();
         var dateOfBirth = DateTime.Now.AddYears(-20);
 
-        // Act
+        
         var result = userService.IsOver21YearsOld(dateOfBirth);
 
-        // Assert
+        
         Assert.False(result);
     }
-    
+    //testowanie userow
     public void AddUser_WithEmptyFirstName_ReturnsFalse()
     {
         
@@ -135,10 +133,11 @@ public class UserServiceTest
         
         Assert.False(result);
     }
+    //testowanie limitu kredytowego
     [Fact]
     public void AddUser_WithCreditLimitBelow500ForNonVeryImportantClient_ReturnsFalse()
     {
-        // Arrange
+        
         var userService = new UserService();
         var firstName = "John";
         var lastName = "Doe";
@@ -146,33 +145,31 @@ public class UserServiceTest
         var dateOfBirth = new DateTime(1990, 1, 1);
         var clientId = 123;
 
-        // Przygotowanie klienta o typie "BasicClient"
+        
         var client = new Client { Type = "ImportantClient" };
 
-        // Przygotowanie serwisu limitu kredytowego
+        
         var userCreditService = new UserCreditService();
-        // Ustawienie limitu kredytowego na 400
+       
         var userCreditLimit = userCreditService.GetCreditLimit(lastName, dateOfBirth);
 
-        // Jeśli użytkownik nie jest bardzo ważnym klientem i jego limit kredytu jest mniejszy niż 500
+        
         if (client.Type != "VeryImportantClient" && userCreditLimit < 500)
         {
-            // Act
+           
             var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
-            // Assert
+           
             Assert.False(result);
         }
         else
         {
-            // W przypadku, gdy klient jest bardzo ważnym klientem lub limit kredytu wynosi co najmniej 500,
-            // test zakończy się sukcesem
+            
             Assert.True(true);
         }
     }
     public void AddUser_WithCreditLimitAbove500ForNonVeryImportantClient_ReturnsFalse()
     {
-        // Arrange
         var userService = new UserService();
         var firstName = "John";
         var lastName = "Malewski";
@@ -180,27 +177,25 @@ public class UserServiceTest
         var dateOfBirth = new DateTime(1990, 1, 1);
         var clientId = 123;
 
-        // Przygotowanie klienta o typie "BasicClient"
+        
         var client = new Client { Type = "BasicClient" };
 
-        // Przygotowanie serwisu limitu kredytowego
+        
         var userCreditService = new UserCreditService();
-        // Ustawienie limitu kredytowego na 400
+       
         var userCreditLimit = userCreditService.GetCreditLimit(lastName, dateOfBirth);
 
-        // Jeśli użytkownik nie jest bardzo ważnym klientem i jego limit kredytu jest mniejszy niż 500
+        
         if (client.Type != "VeryImportantClient" && userCreditLimit < 500)
         {
-            // Act
+            
             var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
-            // Assert
             Assert.False(result);
         }
         else
         {
-            // W przypadku, gdy klient jest bardzo ważnym klientem lub limit kredytu wynosi co najmniej 500,
-            // test zakończy się sukcesem
+          
             Assert.True(true);
         }
     }
